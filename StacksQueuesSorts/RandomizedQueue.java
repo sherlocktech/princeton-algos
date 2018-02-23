@@ -2,6 +2,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.StdOut;
 
 public class RandomizedQueue<Item> implements Iterable<Item> {
     private Item[] q;
@@ -78,11 +79,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     private void resize(int size) {
         Item[] temp = (Item[]) new Object[size];
-        for (int i = 0; i < q.length; i++) {
-            temp[i] = q[i];
+        for (int i = 0; i < n; i++) {
+            temp[i] = q[(first + i) % q.length];
         }
         first = 0;
-        last = 0;
+        last = n;
         q = temp;
     }
 
@@ -99,6 +100,21 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
     
     public static void main(String[] args) {
-        
+        RandomizedQueue<String> queue = new RandomizedQueue<String>();
+        String[] file = {"A", "B", "C", "D"};
+        for (String s : file) {
+            queue.enqueue(s);
+        }
+
+        StdOut.println("iterator: ");
+        for (String s : queue) {
+            StdOut.print(s + " ");
+        }
+
+        StdOut.println();
+        StdOut.println("dequeue: ");
+        while (!queue.isEmpty()) {
+            StdOut.print(queue.dequeue() + " ");
+        }
     }
 }
