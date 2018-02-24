@@ -10,7 +10,7 @@ public class Deque<Item> implements Iterable<Item> {
     private Node last;
 
     private class Node {
-        private Item item;
+        private final Item item;
         private Node next;
         private Node prev;
         public Node(Item item) {
@@ -59,7 +59,7 @@ public class Deque<Item> implements Iterable<Item> {
             first = last;
         else
             first = first.next;
-        first.prev = null;
+        if (first != null) first.prev = null;
         n--;
         return item;
     }
@@ -111,7 +111,7 @@ public class Deque<Item> implements Iterable<Item> {
         StdOut.println();
         StdOut.println("removeFirst: ");
         while (!d.isEmpty()) {
-            StdOut.print(d.removeLast() + " ");
+            StdOut.print(d.removeFirst() + " ");
         }
     }
 }

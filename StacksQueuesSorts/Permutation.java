@@ -14,7 +14,7 @@ public class Permutation {
         }
 
         int i = 0;
-        for ( String s : q) {
+        for (String s : q) {
             if (i >= k) break;
             StdOut.println(s);
             i++;
